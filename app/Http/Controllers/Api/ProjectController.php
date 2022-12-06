@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Company;
 use App\Models\Project;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,11 @@ class ProjectController extends Controller
     public function index()
     {
         return response()->json(Project::with('company')->orderBy('id','desc')->get());
+    }
+
+    public function showCompanyProjects(Company $company)
+    {
+        return response()->json(Project::where('company_id',$company->id)->with('company')->get());
     }
 
     /**

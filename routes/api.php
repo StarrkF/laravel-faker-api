@@ -22,3 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::resource('company',CompanyController::class);
 Route::resource('project',ProjectController::class);
+Route::get('company/projects/{company}',[ProjectController::class,'showCompanyProjects']);
